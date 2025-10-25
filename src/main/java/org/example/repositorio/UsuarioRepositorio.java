@@ -1,7 +1,7 @@
 package org.example.repositorio;
 
 import org.example.models.Usuario;
-import org.example.util.ConexionBaseDatos;
+import org.example.util.ConexionBaseDatosPool;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,15 +15,15 @@ public class UsuarioRepositorio implements Repositorio<Usuario> {
     public String sqlEliminar = "DELETE FROM usuarios WHERE id = ?";
 
     private Connection getConnection() throws SQLException {
-        return ConexionBaseDatos.getConnection();
+        return ConexionBaseDatosPool.getConnection();
     };
 
     @Override
     public List<Usuario> listar() {
         List<Usuario> listar = new ArrayList<>();
-        try(Connection con = ConexionBaseDatos.getConnection();
-                Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery(sqlMostra)) {
+        try(Connection con = ConexionBaseDatosPool.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlMostra)) {
             while (rs.next()) {
                 listar.add(crearUsuario(rs));
             }
@@ -36,8 +36,8 @@ public class UsuarioRepositorio implements Repositorio<Usuario> {
     @Override
     public Usuario buscar(Long id) {
         Usuario usu = null;
-        try (Connection con = ConexionBaseDatos.getConnection();
-                PreparedStatement stmt = con
+        try (Connection con = ConexionBaseDatosPool.getConnection();
+             PreparedStatement stmt = con
                 .prepareStatement(sqlBuscar)) {
             stmt.setLong(1, id);
 
@@ -61,7 +61,7 @@ public class UsuarioRepositorio implements Repositorio<Usuario> {
             sql = sqlGuardar;
         }
 
-        try (Connection con = ConexionBaseDatos.getConnection();
+        try (Connection con = ConexionBaseDatosPool.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, usu.getUsername());
             stmt.setString(2, usu.getPassword());
@@ -79,8 +79,8 @@ public class UsuarioRepositorio implements Repositorio<Usuario> {
 
     @Override
     public void eliminar(Long id) {
-        try (Connection con = ConexionBaseDatos.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sqlEliminar)){
+        try (Connection con = ConexionBaseDatosPool.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sqlEliminar)){
             stmt.setLong(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {

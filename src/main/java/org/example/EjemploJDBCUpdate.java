@@ -4,13 +4,10 @@ import org.example.models.Categoria;
 import org.example.models.Producto;
 import org.example.repositorio.ProductoRepositorio;
 import org.example.repositorio.Repositorio;
-import org.example.util.ConexionBaseDatos;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class EjemploJDBCUpdate {
     public static void main(String[] args) {
+        /*
         Repositorio<Producto> repo = new ProductoRepositorio();
         System.out.println("======== MOSTRAR REGISTROS =======");
         repo.listar().forEach(System.out::println);
@@ -25,5 +22,7 @@ public class EjemploJDBCUpdate {
         pro.setCategoria(c);
         repo.guardarEditar(pro);
         repo.listar().forEach(System.out::println);
+
+         */
     }
 }

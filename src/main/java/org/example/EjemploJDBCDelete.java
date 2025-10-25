@@ -3,13 +3,10 @@ package org.example;
 import org.example.models.Producto;
 import org.example.repositorio.ProductoRepositorio;
 import org.example.repositorio.Repositorio;
-import org.example.util.ConexionBaseDatos;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class EjemploJDBCDelete {
     public static void main(String[] args) {
+        /*
         Repositorio<Producto> repo = new ProductoRepositorio();
         System.out.println("======== MOSTRAR REGISTROS =======");
         repo.listar().forEach(System.out::println);
@@ -20,5 +17,7 @@ public class EjemploJDBCDelete {
         System.out.println("======== ELIMINAR REGISTRO =======");
         repo.eliminar(3L);
         repo.listar().forEach(System.out::println);
+        */
+
     }
 }

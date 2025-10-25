@@ -1,17 +1,16 @@
 package org.example;
 
-import org.example.models.Producto;
 import org.example.models.Usuario;
 import org.example.repositorio.Repositorio;
 import org.example.repositorio.UsuarioRepositorio;
 
 import javax.swing.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Repositorio<Usuario> repo = new UsuarioRepositorio();
         int opcionIndice = 0;
 
@@ -84,5 +83,7 @@ public class Main {
                 }
             }
         } while (blnSalir);
+
+         */
     }
 }

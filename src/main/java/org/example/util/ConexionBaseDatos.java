@@ -1,32 +1,20 @@
 package org.example.util;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBaseDatos {
     private static String url ="jdbc:mysql://localhost:3306/db_curso_java?serverTimezone=UTC";
     private static String user = "root";
     private static String password = "marcos1009F!";
-    private static BasicDataSource pool;
+    private static Connection connection;
 
-    public static BasicDataSource getIntanse() {
-        if (pool == null) {
-            pool = new BasicDataSource();
-            pool.setUrl(url);
-            pool.setUsername(user);
-            pool.setPassword(password);
-            pool.setInitialSize(3);
-            pool.setMinIdle(5);
-            pool.setMaxIdle(10);
-            pool.setMaxTotal(10);
-
+    public static Connection getIntanse() throws SQLException {
+        if (connection == null) {
+            connection = DriverManager.getConnection(url, user, password);
         }
-        return pool;
+        return connection;
     }
 
-    public static Connection getConnection() throws SQLException {
-        return getIntanse().getConnection();
-    }
 }
